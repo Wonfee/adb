@@ -1,0 +1,32 @@
+###############################################################
+this is adb-1.3.1 build for windows under ubuntu 12.04 (64)
+with android source code 4.2.2
+
+###
+why this:
+windows系统下的文件（夹）命名所采用的是GBK编码，而linux是采用的UTF-8编码,使用adb的
+push和pull命令时由于编码方式的不同会产生错误，因此需要修改adb的源代码来支持编码转换。
+
+### comile
+1. replace file_sync_client.c with this modified one, thanks for the guy who shared it.
+
+2. sudo apt-get install mingw32  安装linux下的windws交叉编译工具
+
+3. in your android source code
+
+	source build/envsetup.sh
+	make USE_MINGW=y adb
+
+if no error happen, you should see this:
+	host Executable: adb (out/host/windows-x86/obj/EXECUTABLES/adb_intermediates/adb.exe)
+	Killing adb server so we can replace AdbWinApi.dll
+	Install: out/host/windows-x86/bin/adb.exe
+
+4. copy out/host/windows-x86/bin/* to your windows pc , you can enjoying it.
+
+
+
+
+
+
+
